@@ -1,14 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/health-tracker-mockups/data-rich/index.html"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/health-tracker-mockups/data-rich/(.*)",
-      "dest": "/health-tracker-mockups/data-rich/$1"
+      "source": "/",
+      "destination": "/index.html"
     }
   ]
 }
