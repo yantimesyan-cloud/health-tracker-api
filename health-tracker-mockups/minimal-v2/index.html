@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康追踪 - Clean Modern</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🌸</div>
+                <span class="logo-text">健康日历</span>
+            </div>
+            <div class="date-display">3月 2026</div>
+        </header>
+
+        <main class="main-content">
+            <!-- Calendar Section -->
+            <section class="section calendar-section">
+                <div class="calendar" id="calendar"></div>
+            </section>
+
+            <!-- Stats Cards -->
+            <section class="section stats-grid">
+                <div class="stat-card stat-card-purple">
+                    <div class="stat-icon">🚶</div>
+                    <div class="stat-content">
+                        <div class="stat-label">今日步数</div>
+                        <div class="stat-value">
+                            <input type="number" value="8234" class="stat-input" id="steps">
+                        </div>
+                        <div class="stat-goal">目标 10,000</div>
+                    </div>
+                    <div class="progress-ring">
+                        <svg width="80" height="80">
+                            <circle cx="40" cy="40" r="36" class="progress-ring-bg"></circle>
+                            <circle cx="40" cy="40" r="36" class="progress-ring-fill" 
+                                    style="stroke-dasharray: 226.2; stroke-dashoffset: 40.7;"></circle>
+                        </svg>
+                        <div class="progress-percent">82%</div>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-card-pink">
+                    <div class="stat-icon">⚖️</div>
+                    <div class="stat-content">
+                        <div class="stat-label">当前体重</div>
+                        <div class="stat-value">
+                            <input type="number" value="65.2" step="0.1" class="stat-input" id="weight">
+                            <span class="stat-unit">kg</span>
+                        </div>
+                        <div class="stat-trend trend-down">↓ 0.8kg 本周</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Daily Record Card -->
+            <section class="section">
+                <h2 class="section-title">今日记录</h2>
+                
+                <div class="record-card">
+                    <!-- Meals -->
+                    <div class="record-group">
+                        <div class="record-header">
+                            <div class="record-icon record-icon-orange">🍽️</div>
+                            <span class="record-label">饮食摄入</span>
+                        </div>
+                        <div class="meals-grid">
+                            <div class="meal-item">
+                                <div class="meal-emoji">🌅</div>
+                                <div class="meal-details">
+                                    <div class="meal-name">早餐</div>
+                                    <input type="number" value="450" class="meal-input">
+                                    <span class="meal-unit">kcal</span>
+                                </div>
+                            </div>
+                            <div class="meal-item">
+                                <div class="meal-emoji">☀️</div>
+                                <div class="meal-details">
+                                    <div class="meal-name">午餐</div>
+                                    <input type="number" value="680" class="meal-input">
+                                    <span class="meal-unit">kcal</span>
+                                </div>
+                            </div>
+                            <div class="meal-item">
+                                <div class="meal-emoji">🌙</div>
+                                <div class="meal-details">
+                                    <div class="meal-name">晚餐</div>
+                                    <input type="number" value="520" class="meal-input">
+                                    <span class="meal-unit">kcal</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="total-calories">
+                            <span>总计</span>
+                            <span class="total-value">1,650 kcal</span>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- Exercise -->
+                    <div class="record-group">
+                        <div class="record-header">
+                            <div class="record-icon record-icon-green">💪</div>
+                            <span class="record-label">运动训练</span>
+                        </div>
+                        <select class="exercise-select">
+                            <option value="">选择运动类型</option>
+                            <option value="running" selected>🏃 跑步 - 30分钟</option>
+                            <option value="yoga">🧘 瑜伽 - 45分钟</option>
+                            <option value="gym">🏋️ 健身房 - 60分钟</option>
+                            <option value="swimming">🏊 游泳 - 45分钟</option>
+                        </select>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- Mood -->
+                    <div class="record-group">
+                        <div class="record-header">
+                            <div class="record-icon record-icon-blue">😊</div>
+                            <span class="record-label">今日心情</span>
+                        </div>
+                        <div class="mood-selector">
+                            <button class="mood-btn" data-mood="sad">😢</button>
+                            <button class="mood-btn" data-mood="neutral">😐</button>
+                            <button class="mood-btn active" data-mood="happy">😊</button>
+                            <button class="mood-btn" data-mood="great">😄</button>
+                            <button class="mood-btn" data-mood="love">🥰</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chart Section -->
+            <section class="section">
+                <h2 class="section-title">体重趋势</h2>
+                <div class="chart-card">
+                    <canvas id="weightChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Save Button -->
+            <button class="save-button" id="saveBtn">
+                <span class="save-icon">✓</span>
+                <span>保存今日记录</span>
+            </button>
+        </main>
+    </div>
+
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span>保存成功！</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

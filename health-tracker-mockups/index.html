@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康追踪日历 - 设计方向对比</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            color: #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .card h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: #2C3E50;
+        }
+        
+        .card p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .card-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        
+        .card-features li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .card-features li:before {
+            content: "✓ ";
+            color: #27AE60;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+        }
+        
+        .minimal-preview { background: linear-gradient(135deg, #F8F5F1, #E8D5C4); }
+        .data-preview { background: linear-gradient(135deg, #4A90E2, #667EEA); }
+        .gamified-preview { background: linear-gradient(135deg, #FF6B6B, #FFE66D); }
+        
+        .preview-box {
+            height: 150px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            .cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌟 健康追踪日历</h1>
+            <p class="subtitle">选择你最喜欢的设计风格</p>
+        </header>
+        
+        <div class="cards">
+            <a href="minimal/index.html" class="card">
+                <div class="preview-box minimal-preview">🌸</div>
+                <h2>极简优雅风</h2>
+                <p>温暖、舒适、专注于内容本身</p>
+                <ul class="card-features">
+                    <li>米白配色，暖金强调</li>
+                    <li>大量留白，视觉舒适</li>
+                    <li>柔和阴影，简洁图表</li>
+                    <li>思源黑体 + 线性图标</li>
+                </ul>
+                <button class="btn">查看演示 →</button>
+            </a>
+            
+            <a href="data-rich/index.html" class="card">
+                <div class="preview-box data-preview">📊</div>
+                <h2>数据丰富风</h2>
+                <p>信息密集、图表驱动、专业高效</p>
+                <ul class="card-features">
+                    <li>仪表盘布局，多图表展示</li>
+                    <li>渐变蓝配色，科技感</li>
+                    <li>Chart.js 数据可视化</li>
+                    <li>热力图 + 成就系统</li>
+                </ul>
+                <button class="btn">查看演示 →</button>
+            </a>
+            
+            <a href="gamified/index.html" class="card">
+                <div class="preview-box gamified-preview">🎮</div>
+                <h2>游戏化趣味风</h2>
+                <p>充满活力、激励导向、趣味互动</p>
+                <ul class="card-features">
+                    <li>等级系统 + 经验值</li>
+                    <li>岛屿日历，视觉生长</li>
+                    <li>五彩纸屑动画</li>
+                    <li>成就徽章 + 好友排名</li>
+                </ul>
+                <button class="btn">查看演示 →</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

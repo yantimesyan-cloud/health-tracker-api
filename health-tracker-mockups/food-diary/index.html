@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食物日记 - Food Diary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/food-diary/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">📸</span>
+                <span class="logo-text">食物日记</span>
+            </div>
+            <button class="history-btn" id="historyBtn">
+                <span>📅</span>
+                <span>历史记录</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Date Selector -->
+        <div class="date-selector">
+            <button class="date-nav-btn" id="prevDayBtn">‹</button>
+            <div class="date-display">
+                <div class="date-number" id="dateNumber">12</div>
+                <div class="date-meta">
+                    <div class="date-month" id="dateMonth">3月</div>
+                    <div class="date-weekday" id="dateWeekday">周二</div>
+                </div>
+            </div>
+            <button class="date-nav-btn" id="nextDayBtn">›</button>
+        </div>
+
+        <!-- Upload Area -->
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📷</div>
+            <div class="upload-text">
+                <div class="upload-title">上传美食照片</div>
+                <div class="upload-subtitle">点击或拖拽照片到这里</div>
+            </div>
+            <div class="upload-limit">最多 9 张照片</div>
+        </div>
+
+        <!-- Photo Grid Preview -->
+        <div class="photo-grid-section" id="photoGridSection">
+            <div class="section-header">
+                <h3 class="section-title">📸 已上传照片 (<span id="photoCount">0</span>/9)</h3>
+                <button class="clear-all-btn" id="clearAllBtn">清空</button>
+            </div>
+            <div class="photo-grid" id="photoGrid">
+                <!-- Photos will be added here dynamically -->
+            </div>
+        </div>
+
+        <!-- Generate Button -->
+        <button class="generate-btn" id="generateBtn">
+            <span class="btn-icon">✨</span>
+            <span class="btn-text">生成精美拼图</span>
+        </button>
+
+        <!-- Collage Preview -->
+        <div class="collage-section" id="collageSection">
+            <div class="section-header">
+                <h3 class="section-title">🎨 食物拼图</h3>
+                <button class="download-btn" id="downloadBtn">下载</button>
+            </div>
+            <div class="collage-container">
+                <canvas id="foodCollage"></canvas>
+            </div>
+            <div class="collage-actions">
+                <button class="action-btn save-btn" id="saveBtn">
+                    <span>💾</span>
+                    <span>保存到日记</span>
+                </button>
+                <button class="action-btn share-btn" id="shareBtn">
+                    <span>📤</span>
+                    <span>分享</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- History Calendar (Hidden by default) -->
+        <div class="history-modal" id="historyModal">
+            <div class="history-content">
+                <div class="history-header">
+                    <h2 class="history-title">📅 历史记录</h2>
+                    <button class="close-btn" id="closeHistoryBtn">×</button>
+                </div>
+                <div class="history-calendar">
+                    <!-- Calendar will be generated here -->
+                    <div class="calendar-header">
+                        <button class="calendar-nav-btn" id="prevMonthBtn">‹</button>
+                        <div class="calendar-month" id="calendarMonth">2024年3月</div>
+                        <button class="calendar-nav-btn" id="nextMonthBtn">›</button>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Calendar days will be generated here -->
+                    </div>
+                </div>
+                <div class="history-list" id="historyList">
+                    <!-- History entries will be shown here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/food-diary/script.js"></script>
+</body>
+</html>

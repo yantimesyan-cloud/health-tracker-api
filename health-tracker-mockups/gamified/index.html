@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康追踪 - 游戏化趣味风</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/gamified/style.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    
+    <header class="header">
+        <div class="level-badge">
+            <span class="level-icon">🎮</span>
+            <div class="level-info">
+                <div class="level-text">等级 12</div>
+                <div class="level-title">黄金健康师</div>
+            </div>
+        </div>
+        <div class="xp-bar">
+            <div class="xp-fill" style="width: 62.5%"></div>
+            <div class="xp-text">1,250 / 2,000 XP</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="island-calendar">
+            <h2>🏝️ 健康岛屿</h2>
+            <div class="streak-info">
+                <span class="streak-flame">🔥</span>
+                <span class="streak-text">连续打卡 <strong>7</strong> 天！</span>
+            </div>
+            <div class="calendar-grid" id="islandCalendar"></div>
+        </section>
+
+        <section class="daily-quests">
+            <h2>📝 今日任务</h2>
+            
+            <div class="quest-card completed">
+                <div class="quest-icon">🚶</div>
+                <div class="quest-content">
+                    <div class="quest-name">完成 10,000 步</div>
+                    <div class="quest-progress">
+                        <div class="quest-bar">
+                            <div class="quest-fill steps-gradient" style="width: 82%"></div>
+                        </div>
+                        <span class="quest-text">8,234 / 10,000</span>
+                    </div>
+                </div>
+                <div class="quest-reward">
+                    <div class="check-mark">✅</div>
+                    <div class="xp-earned">+10 XP</div>
+                </div>
+            </div>
+
+            <div class="quest-card">
+                <div class="quest-icon">🍽️</div>
+                <div class="quest-content">
+                    <div class="quest-name">记录三餐</div>
+                    <div class="quest-progress">
+                        <div class="quest-bar">
+                            <div class="quest-fill food-gradient" style="width: 100%"></div>
+                        </div>
+                        <span class="quest-text">3 / 3 完成</span>
+                    </div>
+                </div>
+                <div class="quest-reward">
+                    <div class="check-mark">✅</div>
+                    <div class="xp-earned">+15 XP</div>
+                </div>
+            </div>
+
+            <div class="quest-card in-progress">
+                <div class="quest-icon">💪</div>
+                <div class="quest-content">
+                    <div class="quest-name">运动 60 分钟</div>
+                    <div class="quest-progress">
+                        <div class="quest-bar">
+                            <div class="quest-fill exercise-gradient" style="width: 75%"></div>
+                        </div>
+                        <span class="quest-text">45 / 60 分钟</span>
+                    </div>
+                </div>
+                <div class="quest-reward">
+                    <div class="xp-reward">+20 XP</div>
+                </div>
+            </div>
+
+            <div class="quest-card">
+                <div class="quest-icon">⚖️</div>
+                <div class="quest-content">
+                    <div class="quest-name">记录体重</div>
+                    <div class="quest-progress">
+                        <div class="quest-bar">
+                            <div class="quest-fill weight-gradient" style="width: 0%"></div>
+                        </div>
+                        <span class="quest-text">未完成</span>
+                    </div>
+                </div>
+                <div class="quest-reward">
+                    <div class="xp-reward">+5 XP</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="achievements">
+            <h2>🏆 成就墙</h2>
+            <div class="achievements-showcase">
+                <div class="achievement-item unlocked glow">
+                    <div class="achievement-medal">🥇</div>
+                    <div class="achievement-name">万步达人</div>
+                    <div class="achievement-desc">单日步数超过10,000</div>
+                </div>
+
+                <div class="achievement-item unlocked glow">
+                    <div class="achievement-medal">🔥</div>
+                    <div class="achievement-name">连续7天</div>
+                    <div class="achievement-desc">保持7天打卡记录</div>
+                </div>
+
+                <div class="achievement-item unlocked">
+                    <div class="achievement-medal">📉</div>
+                    <div class="achievement-name">减重1公斤</div>
+                    <div class="achievement-desc">成功减重1kg</div>
+                </div>
+
+                <div class="achievement-item unlocked">
+                    <div class="achievement-medal">🥉</div>
+                    <div class="achievement-name">新手上路</div>
+                    <div class="achievement-desc">完成首次记录</div>
+                </div>
+
+                <div class="achievement-item locked">
+                    <div class="achievement-medal">🏆</div>
+                    <div class="achievement-name">???</div>
+                    <div class="achievement-desc">连续30天打卡</div>
+                </div>
+
+                <div class="achievement-item locked">
+                    <div class="achievement-medal">⭐</div>
+                    <div class="achievement-name">???</div>
+                    <div class="achievement-desc">解锁所有成就</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="leaderboard">
+            <h2>🎯 好友排行</h2>
+            <div class="leaderboard-list">
+                <div class="leaderboard-item rank-2">
+                    <div class="rank">2</div>
+                    <div class="avatar">👨</div>
+                    <div class="player-info">
+                        <div class="player-name">李明</div>
+                        <div class="player-level">Lv.14</div>
+                    </div>
+                    <div class="player-score">2,450 XP</div>
+                </div>
+
+                <div class="leaderboard-item rank-1 you">
+                    <div class="rank crown">👑</div>
+                    <div class="avatar">🧑</div>
+                    <div class="player-info">
+                        <div class="player-name">你 <span class="you-badge">YOU</span></div>
+                        <div class="player-level">Lv.12</div>
+                    </div>
+                    <div class="player-score">1,250 XP</div>
+                </div>
+
+                <div class="leaderboard-item rank-3">
+                    <div class="rank">3</div>
+                    <div class="avatar">👩</div>
+                    <div class="player-info">
+                        <div class="player-name">王芳</div>
+                        <div class="player-level">Lv.11</div>
+                    </div>
+                    <div class="player-score">980 XP</div>
+                </div>
+            </div>
+        </section>
+
+        <button class="quick-record-btn" id="quickRecordBtn">
+            ⚡ 快速记录
+        </button>
+    </main>
+
+    <div class="confetti-container" id="confettiContainer"></div>
+    <div class="toast" id="toast">🎉 任务完成！获得 +20 XP</div>
+
+    <script src="/gamified/script.js"></script>
+</body>
+</html>
