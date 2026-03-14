@@ -4,8 +4,8 @@
 
 // 配置
 const CONFIG = {
-    BACKEND_URL: 'http://localhost:3000', // 本地测试时用这个
-    // BACKEND_URL: 'https://your-backend.railway.app', // 部署后改成这个
+    BACKEND_URL: 'https://health-tracker-backend-eta.vercel.app', // Vercel 部署地址
+    // BACKEND_URL: 'http://localhost:3000', // 本地测试时改成这个
     MAX_PHOTOS: 9,
     DAILY_GOALS: {
         steps: 10000,
