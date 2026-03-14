@@ -1,5 +1,152 @@
 // Clean Modern Data-Rich Charts Configuration
 
+// Date Navigation State
+let currentDate = new Date();
+const API_BASE_URL = 'https://health-tracker-backend-eta.vercel.app';
+
+// Format date for display
+function formatDateDisplay(date) {
+    const months = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+    const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const weekday = weekdays[date.getDay()];
+    
+    return {
+        dateText: `${month}${day}日`,
+        weekday: weekday
+    };
+}
+
+// Format date for API (YYYY-MM-DD)
+function formatDateForAPI(date) {
+    return date.toISOString().split('T')[0];
+}
+
+// Update date display
+function updateDateDisplay() {
+    const { dateText, weekday } = formatDateDisplay(currentDate);
+    document.getElementById('dateText').textContent = dateText;
+    document.getElementById('weekdayText').textContent = weekday;
+    
+    // Disable next button if current date is today or future
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const nextDayBtn = document.getElementById('nextDayBtn');
+    if (nextDayBtn) {
+        nextDayBtn.disabled = currentDate >= today;
+    }
+}
+
+// Load health data from API
+async function loadHealthData(date) {
+    try {
+        const dateStr = formatDateForAPI(date);
+        console.log('📡 Loading data for:', dateStr);
+        
+        const response = await fetch(`${API_BASE_URL}/api/health-data?date=${dateStr}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log('✅ Data loaded:', data);
+        
+        // Update UI with data
+        updateUIWithData(data);
+        
+    } catch (error) {
+        console.error('❌ Failed to load data:', error);
+        // Show error message to user
+        alert('无法加载数据，请检查网络连接或稍后重试');
+    }
+}
+
+// Update UI with loaded data
+function updateUIWithData(data) {
+    // Update health score
+    if (data.score) {
+        const scoreValue = document.querySelector('.score-value');
+        if (scoreValue) scoreValue.textContent = data.score.overall;
+    }
+    
+    // Update steps
+    if (data.steps) {
+        const stepsValue = document.querySelector('.stat-card:nth-child(1) .stat-value');
+        if (stepsValue) stepsValue.textContent = data.steps.current.toLocaleString();
+        
+        const stepsPercent = Math.round((data.steps.current / data.steps.target) * 100);
+        const stepsProgressBar = document.querySelector('.stat-card:nth-child(1) .progress-bar');
+        if (stepsProgressBar) stepsProgressBar.style.width = `${stepsPercent}%`;
+        
+        const stepsPercentText = document.querySelector('.stat-card:nth-child(1) .stat-percent');
+        if (stepsPercentText) stepsPercentText.textContent = `${stepsPercent}%`;
+    }
+    
+    // Update calories
+    if (data.calories) {
+        const caloriesValue = document.querySelector('.stat-card:nth-child(2) .stat-value');
+        if (caloriesValue) caloriesValue.textContent = data.calories.intake.toLocaleString();
+        
+        const caloriesPercent = Math.round((data.calories.intake / data.calories.target) * 100);
+        const caloriesProgressBar = document.querySelector('.stat-card:nth-child(2) .progress-bar');
+        if (caloriesProgressBar) caloriesProgressBar.style.width = `${caloriesPercent}%`;
+        
+        const caloriesPercentText = document.querySelector('.stat-card:nth-child(2) .stat-percent');
+        if (caloriesPercentText) caloriesPercentText.textContent = `${caloriesPercent}%`;
+    }
+    
+    // Update water
+    if (data.water) {
+        const waterValue = document.querySelector('.stat-card:nth-child(3) .stat-value');
+        if (waterValue) waterValue.textContent = data.water.current;
+        
+        const waterPercent = Math.round((data.water.current / data.water.target) * 100);
+        const waterProgressBar = document.querySelector('.stat-card:nth-child(3) .progress-bar');
+        if (waterProgressBar) waterProgressBar.style.width = `${waterPercent}%`;
+        
+        const waterPercentText = document.querySelector('.stat-card:nth-child(3) .stat-percent');
+        if (waterPercentText) waterPercentText.textContent = `${waterPercent}%`;
+    }
+    
+    console.log('🎨 UI updated with new data');
+}
+
+// Initialize date navigation
+function initDateNavigation() {
+    const prevDayBtn = document.getElementById('prevDayBtn');
+    const nextDayBtn = document.getElementById('nextDayBtn');
+    
+    if (prevDayBtn) {
+        prevDayBtn.addEventListener('click', () => {
+            currentDate.setDate(currentDate.getDate() - 1);
+            updateDateDisplay();
+            loadHealthData(currentDate);
+        });
+    }
+    
+    if (nextDayBtn) {
+        nextDayBtn.addEventListener('click', () => {
+            currentDate.setDate(currentDate.getDate() + 1);
+            updateDateDisplay();
+            loadHealthData(currentDate);
+        });
+    }
+    
+    // Initial load
+    updateDateDisplay();
+    loadHealthData(currentDate);
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDateNavigation);
+} else {
+    initDateNavigation();
+}
+
 // Chart.js default config
 Chart.defaults.font.family = "'Inter', sans-serif";
 Chart.defaults.color = '#718096';

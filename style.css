@@ -1064,3 +1064,54 @@ canvas {
     box-shadow: 0 4px 16px rgba(123, 104, 238, 0.3);
 }
 
+/* Date Navigation */
+.header-date {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.date-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 80px;
+}
+
+.date-nav-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--bg-light);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-nav-btn:hover {
+    background: var(--purple-light);
+    color: white;
+    transform: scale(1.05);
+}
+
+.date-nav-btn:active {
+    transform: scale(0.95);
+}
+
+.date-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.date-nav-btn:disabled:hover {
+    background: var(--bg-light);
+    color: var(--text-secondary);
+    transform: none;
+}
+
